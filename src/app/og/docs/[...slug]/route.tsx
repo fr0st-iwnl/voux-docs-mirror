@@ -13,12 +13,26 @@ export async function GET(
   const page = source.getPage(slug.slice(0, -1));
   if (!page) notFound();
 
+  const siteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    process.env.NEXT_PUBLIC_DOCS_BASE_URL ||
+    'http://localhost:3000';
+  const logoUrl = new URL('/assets/logo.png', siteUrl).toString();
+
   return new ImageResponse(
     (
       <DefaultImage
         title={page.data.title}
         description={page.data.description}
-        site="My App"
+        site="Voux Docs"
+        icon={
+          <img
+            src={logoUrl}
+            width={96}
+            height={96}
+            alt="Voux"
+          />
+        }
       />
     ),
     {
