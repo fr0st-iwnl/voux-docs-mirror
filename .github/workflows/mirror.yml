@@ -14,7 +14,11 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
+      - name: Remove workflows before mirror
+        run: rm -rf .github/workflows
+
       - name: Push to mirror
         run: |
           git remote add mirror https://x-access-token:${{ secrets.MIRROR_TOKEN }}@github.com/fr0st-iwnl/voux-docs-mirror.git
           git push mirror master --force
+
