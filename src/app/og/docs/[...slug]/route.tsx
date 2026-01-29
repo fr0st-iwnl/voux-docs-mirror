@@ -5,6 +5,10 @@ import { generate as DefaultImage } from 'fumadocs-ui/og';
 
 export const revalidate = false;
 
+const interFont = fetch(
+  'https://fonts.gstatic.com/s/inter/v20/UcCo3FwrK3iLTcviYwYZ90A2N58.woff2'
+).then((res) => res.arrayBuffer());
+
 export async function GET(
   _req: Request,
   { params }: RouteContext<'/og/docs/[...slug]'>,
@@ -18,6 +22,7 @@ export async function GET(
     process.env.NEXT_PUBLIC_DOCS_BASE_URL ||
     'https://voux-docs.vercel.app';
   const logoUrl = new URL('/assets/logo.png', siteUrl).toString();
+  const interData = await interFont;
 
   return new ImageResponse(
     (
@@ -38,6 +43,20 @@ export async function GET(
     {
       width: 1200,
       height: 630,
+      fonts: [
+        {
+          name: 'Inter',
+          data: interData,
+          weight: 400,
+          style: 'normal',
+        },
+        {
+          name: 'Inter',
+          data: interData,
+          weight: 700,
+          style: 'normal',
+        },
+      ],
     },
   );
 }
