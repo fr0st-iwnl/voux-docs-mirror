@@ -1,0 +1,33 @@
+---
+title: Uninstalling Voux
+description: How to remove Voux from your system.
+icon: Trash2
+---
+
+---
+
+## Uninstalling Manual Installations
+
+If you installed **Voux** [manually](/docs/getting-started/installation/manual-installation), simply delete the folder where Voux was installed.
+**No extra steps are required.**
+
+---
+
+## Uninstalling Docker Installations
+
+If you installed **Voux** using [🐋 Docker](/docs/getting-started/installation/docker), run the following commands:
+
+```bash title="Terminal"
+docker stop voux
+docker rm voux
+docker rmi ghcr.io/quintixlabs/voux/voux:latest # replace :latest with your version if needed
+```
+
+
+<Callout title="Note" type="info">
+  Any **mounted volumes** or **bind mounts** will remain on your system.
+  Remove them **manually** if you no longer need the data.
+</Callout>
+
+{/* i feel like this looks better */}
+&nbsp;
